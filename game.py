@@ -45,9 +45,21 @@ def get_coordinates():
     return [x_coord, y_coord]
 
 
-def place_token(token, x_coord, y_coord):
-    BOARD[x_coord][y_coord] = token
+def check_place_already_taken(x, y):
+    if BOARD[x][y] != '-':
+        token = 0
+    else:
+        token = 1
+    return token
 
+
+def place_token(token, x_coord, y_coord):
+
+    token = check_place_already_taken(x_coord, y_coord)
+    if token == 1:
+        BOARD[x_coord][y_coord] = token
+    else:
+        print("Place already taken, enter a new row/column")
 
 def did_win(player):
     player_has_won = False
